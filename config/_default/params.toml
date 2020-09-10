@@ -3,11 +3,12 @@
 
 ########################
 # Default site parameters
+# RELEASE-ITEM: 'latest_github_branch' and 'version' get updated each release
 
 # GitHub branch (latest release)
-latest_github_branch = "release-0.16"
+latest_github_branch = "release-0.17"
 # Default version (latest release)
-version = "v0.16"
+version = "v0.17"
 ########################
 
 # Section labels for versions
@@ -15,9 +16,9 @@ version = "v0.16"
 doclabel = "Documentation "
 releaselabel = "Release: "
 # Pre-release
-masterlabel = "Pre-release"
-# section path value ("master" docs directory folder on website)
-masterfolder = "development"
+prereleaselabel = "Pre-release"
+# section path value ("development" docs directory folder on website)
+prereleasefolder = "development"
 
 # Footer content
 knativeAuthors = "The Knative Authors"
