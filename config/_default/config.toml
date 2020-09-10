@@ -8,6 +8,7 @@ title = "Knative"
 configDir = "config"
 canonifyURLs = "true"
 relativeURLs = "true"
+branchBundlePrefix = ["_index", "README"]
 
 # Ignore files when rendering/building site (to hide from Nav tree and sitemap)
 # Add files here that you "include" in other files using the 'readfile' shortcode
@@ -19,7 +20,7 @@ relativeURLs = "true"
 # and we want the build to avoid blank nav entries and extra/duplicate sitemap entries.
 # (the README.md files are kept for GitHub repo users so a landing pages appears)
 ignoreFiles = [
-  "README.md$",
+#  "README.md$",
   "/*/reference/build.md",
   "/*/reference/serving.md",
   "/*/reference/eventing/eventing.md",

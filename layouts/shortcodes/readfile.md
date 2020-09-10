@@ -81,7 +81,6 @@ Parameters:
     https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages
 
 */}}
-
 {{/* Get the filepath */}}
 {{/* If the first character is "/", the path is from the site's `baseURL`. */}}
 {{ if eq (.Get "file" | printf "%.1s") "/" }}
@@ -101,15 +100,28 @@ Parameters:
 {{/* Check if the specified file exists */}}
 {{ if fileExists ($.Scratch.Get "filepath") }}
 
+{{/* Use GetPage to process shortcodes. See
+https://discourse.gohugo.io/t/readfile-does-not-parse-shortcodes/16667/7 */}}
+{{ with ($.Page.GetPage ($.Scratch.Get "filepath")) }}
+
+{{- warnf "Using GetPage for %q" ($.Scratch.Get "filepath") -}}
+
+{{/* If GetPage works, this is a markdown file and should be included as-is */}}
+{{ safeHTML .Content }}
+
+{{ else }}
+
 {{/* If Code, then highlight with the specified language. */}}
 {{ if eq (.Get "code") "true" }}
 
-{{ highlight ($.Scratch.Get "filepath" | readFile | safeHTML ) (.Get "lang") "" }}
+{{ highlight ($.Scratch.Get "filepath" | readFile | safeHTML) (.Get "lang") "" }}
 
 {{ else }}
 
 {{/* If HTML or Markdown. For Markdown`{{%...%}}`,  don't send content to processor again (use safeHTML). */}}
 {{ $.Scratch.Get "filepath" | readFile | safeHTML }}
+
+{{ end }}
 
 {{ end }}
 
